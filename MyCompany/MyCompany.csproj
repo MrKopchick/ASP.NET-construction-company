@@ -18,4 +18,18 @@
     <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Domain\Entities\" />
+    <Folder Include="Domain\Enums\" />
+    <Folder Include="Domain\Repositories\Abstract\" />
+    <Folder Include="Domain\Repositories\EntityFramework\" />
+    <Folder Include="Models\ViewComponents\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\scss\" />
+    <Folder Include="Views\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
