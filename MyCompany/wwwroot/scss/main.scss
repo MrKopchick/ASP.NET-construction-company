@@ -5,7 +5,7 @@
 @import 'libs/breakpoints';
 @import 'libs/html-grid';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,800');
-@import url('fontawesome-all.min.css');
+@import url('../css/fontawesome-all.min.css');
 
 /*
 	ZeroFour by HTML5 UP
@@ -108,7 +108,7 @@
 	}
 
 	body {
-		background: #303238 url('images/bg01.png');
+		background: #303238 url('../img/bg01.png');
 
 		// Stops initial animations until page loads.
 			&.is-preload * {
@@ -300,15 +300,9 @@
 	}
 
 	header.major {
-		border-bottom: solid 1px #dbdbdb;
+		//border-bottom: solid 1px #dbdbdb;
 		margin: 0 0 3em 0;
-
-		&:after {
-			content: '';
-			display: block;
-			border-top: solid 1px #dbdbdb;
-			height: 8px;
-		}
+		
 
 		h2, h3 {
 			margin: 0 0 1.2em 0;
@@ -438,7 +432,7 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			background: url('images/bg01.png');
+			background: url('img/bg01.png');
 			width: 100%;
 			height: 100%;
 			opacity: 0.75;
@@ -477,7 +471,7 @@
 	input[type="reset"],
 	button,
 	.button {
-		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2))', 'url("images/bg02.png")'));
+		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2))', 'url("../img/bg02.png")'));
 		@include vendor('transition', 'background-color 0.2s ease-in-out');
 		-webkit-appearance: none;
 		position: relative;
@@ -759,7 +753,7 @@
 	}
 
 	.dropotron {
-		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0))', 'url("images/bg02.png")'));
+		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0))', 'url("../img/bg02.png")'));
 		position: relative;
 		background-color: #3B3E45;
 		background-color: rgba(59, 62, 69, 0.9);
@@ -865,7 +859,7 @@
 /* Wrappers */
 
 	#header-wrapper {
-		background: url('images/bg01.png'), url('../../images/header.jpg');
+		background: url('../img/bg01.png'), url('../img/header.jpg');
 		background-position: top left, center center;
 		background-size: auto, cover;
 		padding: 3em 0;
@@ -879,7 +873,7 @@
 	}
 
 	#footer-wrapper {
-		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))', 'url("images/bg03.png")', 'url("images/bg02.png")'));
+		@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5))', 'url("../img/bg03.png")', 'url("../img/bg02.png")'));
 		position: relative;
 		background-repeat: repeat-x, no-repeat, repeat;
 		background-size: 100% 100%, 100% 15em, auto auto;
@@ -899,7 +893,7 @@
 			position: relative;
 			text-shadow: 1px 1px 0 #fff;
 			background-color: #fff;
-			background-image: url('images/bg03.png'), url('images/bg04.png'), url('images/bg02.png');
+			background-image: url('../img/bg03.png'), url('../img/bg04.png'), url('../img/bg02.png');
 			background-repeat: no-repeat, no-repeat, repeat;
 			background-size: 100% 15em, 100% 15em, auto auto;
 			background-position: top center, bottom center, top left;
@@ -912,7 +906,7 @@
 			position: relative;
 			text-shadow: 1px 1px 0 #fff;
 			background-color: #fff;
-			background-image: url('images/bg03.png'), url('images/bg02.png');
+			background-image: url('../img/bg03.png'), url('../img/bg02.png');
 			background-repeat: no-repeat, repeat;
 			background-size: 100% 15em, auto auto;
 			background-position: top center, top left;
@@ -929,7 +923,7 @@
 		margin-bottom: 0;
 
 		.inner {
-			@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("images/bg02.png")'));
+			@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("img/bg02.png")'));
 			position: relative;
 			height: 5.5em;
 			background-color: #3B3E45;
@@ -1101,7 +1095,7 @@
 
 			#titleBar {
 				@include vendor('backface-visibility', 'hidden');
-				@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("images/bg02.png")'));
+				@include vendor('background-image', ('linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("../img/bg02.png")'));
 				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
 				background-color: rgba(59, 62, 69, 0.9);
 				box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.5), inset 0px 0px 0px 2px rgba(255, 255, 255, 0.075), 0px 1px 6px 0px rgba(0, 0, 0, 0.35);
@@ -1153,7 +1147,7 @@
 
 			#navPanel {
 				@include vendor('backface-visibility', 'hidden');
-				@include vendor('background-image', ('linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("images/bg01.png")'));
+				@include vendor('background-image', ('linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))', 'url("../img/bg01.png")'));
 				@include vendor('transform', 'translateX(#{_size(navPanel) * -1})');
 				@include vendor('transition', ('transform #{_duration(navPanel)} ease'));
 				background-color: #303238;
