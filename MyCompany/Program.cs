@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using MyCompany.Domain;
 using MyCompany.Infrastructure;
 
 namespace MyCompany
@@ -8,36 +12,58 @@ namespace MyCompany
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-            // Подключаю конфиги
+            // configuration
             IConfigurationBuilder configurationBuild = new ConfigurationBuilder()
                 .SetBasePath(builder.Environment.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
-            // делаю секцию Project в обьектную форму для удобства
             IConfiguration configuration = configurationBuild.Build();
             AppConfig appConfig = configuration.GetSection("Project").Get<AppConfig>()!;
 
-            // подключаю функионал MVC
+            // database, fix .net 9 bug
+            builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(appConfig.Database.ConnectionString).
+            ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)));
+
+            // identity system
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<AppDbContext>();
+
+            // auth cookie
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "ConstructionCompanyAuth";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(30);
+                options.LoginPath = "/admin/login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
+            // controllers
             builder.Services.AddControllersWithViews();
-            
-            // собираю конфиг 
             WebApplication app = builder.Build();
 
-            //! Порядок следования  middleware важен    
-
-            // подключаю статические файлы
+            // static files
             app.UseStaticFiles();
 
-            // подключаю систему маршутизации
+            // routs
             app.UseRouting();
 
-            // регистрирую нужные маршруты
+            // auth connection
+            app.UseCookiePolicy();
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
 
-
-
-            // запускаю приложение
             await app.RunAsync();
         }
     }
