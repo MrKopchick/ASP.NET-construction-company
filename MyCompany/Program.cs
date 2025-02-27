@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using MyCompany.Domain;
 using MyCompany.Infrastructure;
+using MyCompany.Domain.Repositories.Abstract;
+using MyCompany.Domain.Repositories.EntityFramework;
 
 namespace MyCompany
 {
@@ -25,6 +27,11 @@ namespace MyCompany
             builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(appConfig.Database.ConnectionString).
             ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning)));
 
+            // repositories
+            builder.Services.AddTransient<IServiceCategoriesRepository, EFServiceCategoriesRepository>();
+            builder.Services.AddTransient<IServicesRepository, EFServicesRepository>(); 
+            builder.Services.AddTransient<DataManager>();
+                
             // identity system
             builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
             {
