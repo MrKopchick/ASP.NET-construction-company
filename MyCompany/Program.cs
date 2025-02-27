@@ -57,7 +57,7 @@ namespace MyCompany
             // routs
             app.UseRouting();
 
-            // auth connection
+            // auth connection  
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -24,8 +24,6 @@
 
   <ItemGroup>
     <Folder Include="Domain\Enums\" />
-    <Folder Include="Domain\Repositories\Abstract\" />
-    <Folder Include="Domain\Repositories\EntityFramework\" />
     <Folder Include="Models\ViewComponents\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
