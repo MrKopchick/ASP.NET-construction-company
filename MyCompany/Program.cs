@@ -49,7 +49,7 @@ namespace MyCompany
                 options.Cookie.Name = "ConstructionCompanyAuth";
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromDays(30);
-                options.LoginPath = "/admin/login";
+                options.LoginPath = "/account/login";
                 options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
