@@ -31,7 +31,7 @@ namespace MyCompany.Controllers
                 return View(model);
             }
 
-            SignInResult result = await _signInManager.PasswordSignInAsync(model.Username!, model.Password!, model.RememberMe, false);
+            SignInResult result = await _signInManager.PasswordSignInAsync(model.UserName!, model.Password!, model.RememberMe, false);
 
             if (result.Succeeded)
             {
