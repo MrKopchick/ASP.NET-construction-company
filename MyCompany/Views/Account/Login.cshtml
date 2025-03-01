@@ -1,0 +1,37 @@
+﻿@model LoginViewModel
+@{
+    string strTitle = "Login to Personal Account";
+    ViewBag.Title = strTitle;
+}
+
+<div>
+    <h1>
+        @strTitle
+    </h1>
+    <div class = "div-box">
+        <form asp-area="" asp-controller ="Account" asp-action ="Login" method="post" asp-route-returnUrl = "@ViewBag.ReturnUrl">
+            <div asp-validation-summery ="All">
+
+            </div>
+
+            <div>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" />
+                <label asp-validation-for ="UserName"></label>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="RememberMe"></label>
+                <input asp-for="RememberMe" />
+                <span asp-validation-for="RememberMe"></span>
+            </div>
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
