@@ -30,7 +30,7 @@ namespace MyCompany.Domain.Repositories.EntityFramework
 
         public async Task DeleteServiceCategoryAsync(int id)
         {
-            _context.Entry(new ServiceCategory { Id = id }).State = EntityState.Deleted;
+            _context.Entry(new ServiceCategory() { Id = id }).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
 
