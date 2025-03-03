@@ -1,3 +1,66 @@
-﻿<div>
-    admin work)
+﻿@{
+    string strTitle = "Admin Page";
+    ViewBag.Title = strTitle;
+    IEnumerable<ServiceCategory>? serviceCategories = ViewBag.ServiceCategories;
+    IEnumerable<Service>? services = ViewBag.Services;
+}
+
+<div>
+    <h2>@strTitle</h2>
+    <div>
+        <h3>Service Categories</h3>
+        <div class="div-box">
+            <a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-route-id=""> Add a service category </a>
+        <div/>
+        @if(serviceCategories.Any()){
+            <div>
+                @foreach(ServiceCategory entity in serviceCategories){
+                    <div>
+                        <a asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesEdit" asp-route-id="@entity.Id"> Edit </a>
+
+                        <form style="display:inline-block;" id="form-category-@entity.Id" asp-area="" asp-controller="Admin" asp-action="ServiceCategoriesDelete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id"/>
+                            <a href="#" onclick="document.getElementById('form-category-@entity.Id').submit();">Delete</a>
+                        </form>
+
+                        <span>
+                            @($"{entity.Title}")
+                        </span> 
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div>
+        <h3>Our Services</h3>
+        <div class="div-box">
+            <a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id=""> Add a service</a>
+        <div/>
+        @if(services.Any()){
+            <div>
+                @foreach(Service entity in services){
+                    <div>
+                        <a asp-area="" asp-controller="Admin" asp-action="ServicesEdit" asp-route-id="@entity.Id"> Edit </a>
+
+                        <form style = "display:inline-block;" id = "form-service-@entity.Id" asp-area="" asp-controller="Admin" asp-action="ServiceDelete" method="post">
+                            <input type="hidden" name="id" value="@entity.Id"/>
+                            <a href="#" onclick="document.getElementById('form-service-@entity.Id').submit();">Delete</a>
+                        </form>
+
+                        <span>
+                            @($"{entity.ServiceCategory?.Title}")
+                            <a asp-area = "" asp-controller="Services" asp-action="Show" asp-route-id ="@entity.Id"> @($"{entity.Id}") </a>
+                        </span> 
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="div-box">
+        <form asp-area="" asp-asp-controller="Account" asp-action="Logout" method="post">
+            <input type="submit" value="Logout" />
+        </form>
+    </div>
 </div>
