@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Routing;
 using Microsoft.AspNetCore.Mvc;
 using MyCompany.Domain;
 
@@ -29,6 +31,13 @@ namespace MyCompany.Controllers.Admin
             await img.CopyToAsync(stream);
 
             return path;
+        }
+
+        public async Task<string> SaveEditorImg(){
+            IFormFile img = Request.Form.Files[0];
+            await SaveImg(img);
+
+            return JsonSerializer.Serialize(new {location = Path.Combine("/img/", img.FileName)});
         }
     }
 }
