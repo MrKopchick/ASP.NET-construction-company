@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using MyCompany.Domain;
 using MyCompany.Domain.Entities;
+using MyCompany.Infrastructure;
 
 namespace MyCompany.Models.Components{
     public class MenuViewComponent : ViewComponent
@@ -17,7 +18,9 @@ namespace MyCompany.Models.Components{
 
             IEnumerable<Service> list = await _dataManager.Services.GetServicesAsync();
 
-            return await Task.FromResult((IViewComponentResult)View("Default", list));
+            IEnumerable<ServiceDTO> listDTO = HelperDTO.TransformServices(list);
+
+            return await Task.FromResult((IViewComponentResult)View("Default", listDTO));
         }
 
     }
