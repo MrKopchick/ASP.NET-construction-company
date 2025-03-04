@@ -8,5 +8,10 @@ namespace MyCompany.Controllers
         {
             return View();
         }
+
+        // simple view, so I do it without async shit
+        public IActionResult Contats(){
+            return View();
+        }
     }
 }
