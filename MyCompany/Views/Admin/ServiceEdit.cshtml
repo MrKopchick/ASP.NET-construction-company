@@ -3,7 +3,12 @@
     string strTitle = "Edit Service";
     ViewBag.Title = strTitle;   
 }
-
+<style>
+    button{
+        color: #000 | important;
+    }
+</style>
+<script src="https://cdn.tiny.cloud/1/c43s9i06o1vvni8l54o95jh6ummkm1fhflnb2idabqpn743y/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <div>
     <h2>@strTitle</h2>
     <div>
@@ -60,3 +65,17 @@
         </form>
     </div>
 </div>
+
+<script>
+    tinymce.init({
+    selector: 'textarea',
+    language: 'en',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+    toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',});
+    automatic_uploads: true,
+    images_upload_url: '/admin/SaveEditorImg',
+    images_reuse_filename: true,
+    image_demisions:false,
+    paste_data_images: true,
+    convert_urls: false
+</script>
