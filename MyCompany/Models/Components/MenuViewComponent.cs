@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
 using MyCompany.Domain;
 using MyCompany.Domain.Entities;
 using MyCompany.Infrastructure;
