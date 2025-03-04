@@ -1,0 +1,23 @@
+﻿@inject IConfiguration config
+@{
+    AppConfig? appConfig = config.GetSection("Project").Get<AppConfig>();
+    string strTitle = "Contacts";
+    ViewBag.Title = strTitle;
+}
+@await Html.PartialAsync("_SidebarPartial")
+
+<div class="col-8 col-12-medium imp-medium">
+    <div id="content">
+        <article>
+            <header class="major">
+                <h2>@strTitle</h2>
+            </header>
+            <div>
+                Telephone: <span class="text-bold"> <a href="tel:@appConfig?.Company.CompanyPhoneShort"> @appConfig?.Company.CompanyPhoneShort</a></span>
+            </div>
+            <div>
+                Email: <span class="text-bold"> <a href="mailto:@appConfig?.Company.CompanyEmail"> @appConfig?.Company.CompanyEmail</a></span>
+            </div>
+        </article>
+    </div>
+</div>
