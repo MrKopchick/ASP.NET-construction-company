@@ -5,6 +5,7 @@ using MyCompany.Domain;
 using MyCompany.Infrastructure;
 using MyCompany.Domain.Repositories.Abstract;
 using MyCompany.Domain.Repositories.EntityFramework;
+using Serilog;
 
 namespace MyCompany
 {
@@ -54,9 +55,25 @@ namespace MyCompany
                 options.SlidingExpiration = true;
             });
 
-            // controllers
+            // controllers 
             builder.Services.AddControllersWithViews();
+
+            // serilog
+            builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+
+
+            // middleware!!!!
+            
+            // collecting the configuration
             WebApplication app = builder.Build();
+
+            // use serialog
+            app.UseSerilogRequestLogging();
+
+            // exception handling
+            if(app.Environment.IsDevelopment()){
+                app.UseDeveloperExceptionPage();
+            }
 
             // static files
             app.UseStaticFiles();
