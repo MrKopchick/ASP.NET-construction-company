@@ -27,13 +27,14 @@ namespace MyCompany.Controllers.Admin
             }
 
             await _dataManager.Services.SaveServiceAsync(entity);
-
+            _logger.LogInformation($"Service category {entity.Id} has been update or addded");
             return RedirectToAction("Index");
         }
         
         [HttpPost]
         public async Task<IActionResult> ServicesDelete(int id){
             await _dataManager.Services.DeleteServiceAsync(id);
+            _logger.LogInformation($"Service {id} has been deleted");
             return RedirectToAction("Index");
         }
 
