@@ -18,13 +18,14 @@ namespace MyCompany.Controllers.Admin
             if(!ModelState.IsValid) return View(entity);
 
             await _dataManager.ServiceCategories.SaveServiceCategoryAsync(entity);
-
+            _logger.LogInformation($"Service category {entity.Id} has been updated or added");
             return RedirectToAction("Index");
         }
 
         [HttpPost]
         public async Task<IActionResult> ServiceCategoriesDelete(int id){
             await _dataManager.ServiceCategories.DeleteServiceCategoryAsync(id);
+            _logger.LogInformation($"Service category {id} has been deleted");
             return RedirectToAction("Index");
         }
     }
